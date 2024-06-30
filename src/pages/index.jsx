@@ -7,14 +7,9 @@ import { Gallery } from '../components/Gallery/gallery.jsx';
 import { Menu } from '../components/Menu/menu.jsx';
 import { Contact } from '../components/Contact/contact.jsx';
 import { Banner } from '../components/Banner/banner.jsx';
+import { Drink } from '../components/Drink/drink.jsx';
 
 
-
-/*const response = await fetch('http://localhost:4000/api/drinks')
-const data = await response.json();
-const drinks = data.result;
-
-console.log(drinks)*/
 
 document.querySelector('#root').innerHTML = render(
   <div className="page">
@@ -38,7 +33,7 @@ rolloutNav.classList.toggle('nav-closed')
  rolloutNav.addEventListener('click', () => {
  rolloutNav.classList.add('nav-closed')
  })
-/*
+
  const buttons = document.querySelectorAll('.order-btn')
  buttons.forEach((button, index) => {
   button.addEventListener('click', async() => {
@@ -52,4 +47,4 @@ rolloutNav.classList.toggle('nav-closed')
     const data = await response.json();
     window.location.reload()
   });
-});*/
+});
