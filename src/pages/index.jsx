@@ -14,6 +14,8 @@ const fetchDrinks = async () => {
   return json.data;
 };
 
+
+
 const renderDrinks = async () => {
   const drinks = await fetchDrinks();
 
@@ -32,3 +34,33 @@ const renderDrinks = async () => {
 };
 
 renderDrinks();
+
+
+const forms = document.querySelectorAll('.drink__controls');
+
+forms.forEach((form) => {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = event.currentTarget.querySelector('button');
+    const drinkId = event.currentTarget.dataset.id;
+    const ordered = button.classList.contains('order-btn--ordered');
+
+    console.log('ID nápoje:', drinkId);
+
+      const response = await fetch(`http://localhost:4000/api/drinks/${drinkId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([{ op: 'replace', path: '/ordered', value: !ordered }]),
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+
+  
+      button.classList.toggle('order-btn--ordered');
+      button.textContent = button.classList.contains('order-btn--ordered') ? 'Zrušit' : 'Objednat';
+    
+  });
+});

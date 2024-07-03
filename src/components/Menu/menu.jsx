@@ -15,12 +15,17 @@ export const Menu = ({ drinks }) => {
               key={drink.id}
               id={drink.id}
               name={drink.name}
+              ordered={drink.ordered}
               image={`http://localhost:4000${drink.image}`}
               layers={drink.layers}
             />
           ))}
         </div>
       </div>
+
+      <div className="order-detail">
+          <a href="/order.html">Detail objednávky</a>
+        </div>
     </section>
   );
 };
