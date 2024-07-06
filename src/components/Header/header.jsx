@@ -4,7 +4,7 @@ export const Header = ({showMenu}) => {
   return (
     <header>
       <div className="header__content container">
-        <div className="site-logo"></div>
+        <a href="/"><div className="site-logo"></div></a>
         {showMenu ? (
           <div className="navigation">
             <button className="nav-btn"></button>

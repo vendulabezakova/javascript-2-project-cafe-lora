@@ -12,5 +12,7 @@ export const Order = ({ items }) => {
                 <OrderItem key={item.id} name={item.name} image={item.image} />
             ))}
         </div>
+        
+
     );
 };
