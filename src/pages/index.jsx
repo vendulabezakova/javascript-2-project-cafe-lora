@@ -8,32 +8,40 @@ import { Menu } from '../components/Menu/menu.jsx';
 import { Contact } from '../components/Contact/contact.jsx';
 import { Banner } from '../components/Banner/banner.jsx';
 
-const fetchDrinks = async () => {
-  const response = await fetch('http://localhost:4000/api/drinks');
-  const json = await response.json();
-  return json.data;
+const response = await fetch('http://localhost:4000/api/drinks');
+const json = await response.json();
+const drinks = json.data;
+
+
+document.querySelector('#root').innerHTML = render(
+  <div className="page">
+    <Header showMenu={true}/>
+    <main>
+      <Banner />
+      <Menu drinks={drinks}/>
+      <Gallery />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+);
+
+
+const hamburger = document.querySelector('.nav-btn');
+const menuPolozky = document.querySelector('.rollout-nav');
+
+const closeNav = () => {
+  menuPolozky.classList.add('nav-closed');
 };
 
+hamburger.addEventListener('click', () => { 
+  menuPolozky.classList.toggle('nav-closed');});
 
-
-const renderDrinks = async () => {
-  const drinks = await fetchDrinks();
-
-  document.querySelector('#root').innerHTML = render(
-    <div className="page">
-      <Header />
-      <main>
-        <Banner />
-        <Menu drinks={drinks} />
-        <Gallery />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
-};
-
-renderDrinks();
+menuPolozky.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    closeNav();
+  }
+});
 
 
 const forms = document.querySelectorAll('.drink__controls');
